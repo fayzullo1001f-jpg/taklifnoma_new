@@ -196,7 +196,7 @@ function App() {
 
             {/* TIMELINE */}
             <motion.section
-                className="section"
+                className="section sed"
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="show"
