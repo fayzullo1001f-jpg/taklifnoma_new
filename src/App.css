@@ -1,38 +1,434 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300&display=swap');
+
+body {
+  margin: 0;
+  background: #0F172A; /* 🔥 asosiy dark */
+  font-family: 'Montserrat', sans-serif;
+  color: #E5E7EB;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+  max-width: 420px;
+  margin: auto;
+  background: #111827;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* HERO */
+.hero {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 15px;
+}
+
+.hero_div {
+  width: 260px;
+  height: 320px;
+  background: url("./img/two.jpg") center/cover;
+  border-radius: 140px 140px 0 0;
+  position: relative;
+
+  box-shadow: 1px 1px 1px 3px white;
+
+  overflow: hidden;
+}
+
+.hero_div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /*background: linear-gradient(*/
+  /*        to top,*/
+  /*        rgba(0,0,0,0.7),*/
+  /*        rgba(0,0,0,0.2)*/
+  /*);*/
+}
+
+.hero h1 {
+  font-family: 'Playfair Display';
+  letter-spacing: 4px;
+  font-size: 32px;
+  margin: 5px 0;
+  color: #F9FAFB;
+}
+
+.date {
+  color: #1eecc8; /* gold */
+  letter-spacing: 2px;
+}
+
+/* SECTION */
+.section {
+  margin: 20px;
+  padding: 50px 20px;
+  border-radius: 25px;
+  text-align: center;
+  background: #1F2937;
+  align-items: center;
+
+  box-shadow:
+          0 10px 30px rgba(0,0,0,0.5),
+          inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+.sect{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.section h2 , .wed{
   color: white;
+  font-family: 'Playfair Display';
+  letter-spacing: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+/* TEXT */
+.section p {
+  color: #D1D5DB;
 }
 
-@keyframes App-logo-spin {
+/* TIMER */
+.timer {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 30px;
+
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+
+  color: #F9FAFB;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+}
+
+/* MUSIC */
+.music {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #CBA135;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  cursor: pointer;
+
+  box-shadow: 0 5px 20px rgba(203,161,53,0.3);
+}
+
+.music:hover {
+  transform: scale(1.1);
+}
+
+/* CALENDAR */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  gap: 6px;
+}
+
+.cal-grid div {
+  padding: 8px;
+  border-radius: 50%;
+  color: #9CA3AF;
+}
+
+.active {
+  background: white;
+  color: #111827;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  align-items: center;
+
+}
+
+/* BUTTON */
+button {
+  background: rgba(255, 255, 255, 0.8);
+  color: #111827;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+
+  box-shadow: 0 3px 3px rgba(74, 211, 20, 0.5);
+  transition: 0.3s;
+  position: relative;
+  top: 20px ;
+}
+
+button:hover {
+  transform: translateY(-3px);
+}
+
+/* IMAGES */
+.cake, .restaurant, .ring {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
+  transition: 0.4s;
+}
+.restaurant{
+  height: 300px;
+  width: 230px;
+}
+
+.cake:hover, .restaurant:hover, .ring:hover {
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+.footer {
+
+  margin: 20px;
+  padding: 50px 20px;
+  border-radius: 25px;
+  text-align: center;
+  background: #1F2937;
+  align-items: center;
+
+  box-shadow:
+          0 10px 30px rgba(0,0,0,0.5),
+          inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.footer h1 {
+  color: white;
+  letter-spacing: 3px;
+}
+
+.bride {
+  width: 210px;
+  height: 300px;
+
+  border-radius: 120px 120px 0 0 ;
+  border: 2px solid white;
+}
+.hero_text{
+  height: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+.marry{
+  width: 220px;
+  height: 150px;
+  border-radius: 25px;
+}
+.sed{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.seds{
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+.maps{
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+}
+.ring{
+  width: 230px;
+  height: 150px;
+}
+/* smooth reveal animation */
+@keyframes fadeUp {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(40px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.section, .hero, .footer {
+  animation: fadeUp 1s ease both;
+}
+@keyframes textGlow {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+    letter-spacing: 10px;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 4px;
+  }
+}
+
+.hero h1 {
+  animation: textGlow 1.2s ease forwards;
+}
+
+.hero span {
+  animation: fadeUp 1.5s ease forwards;
+  color: #CBA135;
+  font-size: 28px;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.cake,
+.restaurant,
+.ring,
+.marry,
+.bride {
+  animation: float 6s ease-in-out infinite;
+}
+.cake:hover,
+.restaurant:hover,
+.ring:hover,
+.marry:hover {
+  transform: scale(1.07);
+  filter: brightness(1.1);
+  transition: 0.4s ease;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(203,161,53,0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(203,161,53,0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(203,161,53,0);
+  }
+}
+
+.music.playing {
+  animation: pulse 1.5s infinite;
+}
+.section:hover {
+  transform: translateY(-5px);
+  transition: 0.4s ease;
+  box-shadow:
+          0 20px 50px rgba(0,0,0,0.6),
+          inset 0 0 0 1px rgba(203,161,53,0.2);
+}
+@keyframes heroDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.1);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.hero_text h1 {
+  animation: heroDrop 1.2s ease forwards;
+}
+@keyframes heroDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.1);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.hero_text h1 {
+  animation: heroDrop 1.2s ease forwards;
+}
+@keyframes ampFloat {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+.hero_text span {
+  display: inline-block;
+  animation: ampFloat 2s ease-in-out infinite;
+  color: #CBA135;
+  font-size: 30px;
+}
+@keyframes textFadeBlur {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.section p {
+  animation: textFadeBlur 1.2s ease forwards;
+}
+.section h2 {
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 1s ease both;
+}
+
+.section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 2px;
+  background: #CBA135;
+  animation: lineGrow 1.2s ease forwards;
+}
+
+@keyframes lineGrow {
+  to {
+    width: 100%;
+  }
+}
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.timer {
+  animation: popIn 1s ease forwards;
+}
+.section h2,
+.section p,
+.timer,
+.footer h1 {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+.time_line{
+  width: 150px;
 }
