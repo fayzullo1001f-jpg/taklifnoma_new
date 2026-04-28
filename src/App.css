@@ -446,3 +446,9 @@ button:hover {
   justify-content: space-around;
   gap: 15px;
 }
+.sect{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+}
