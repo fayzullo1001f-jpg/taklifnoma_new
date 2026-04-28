@@ -5,7 +5,7 @@ import "./App.css";
 import musicFile from "./music/music_for_videos-wedding-march-music-box-163683 (1).mp3";
 import play from "./img/circle-play-solid-full.svg";
 import pause from "./img/circle-pause-solid-full.svg";
-import cake from "./img/afec371b0d00-wedding-cake-t.webp";
+
 import restaurant from "./img/L_height.webp";
 import ring from "./img/pngtree-elegant-wedding-jewelry-set-featuring-wedding-rings-on-a-white-textured-image_13613257.png";
 import bride from "./img/pexels-photo-35234597.webp";
