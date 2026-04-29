@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import "./App.css";
 
 import musicFile from "./music/МОТ_Когда_мужчина_влюблён_Премьера_клипа,_2024.mp3";
-import play from "./img/circle-play-solid-full.svg";
-import pause from "./img/circle-pause-solid-full.svg";
 
 import restaurant from "./img/L_height.webp";
 import ring from "./img/pngtree-elegant-wedding-jewelry-set-featuring-wedding-rings-on-a-white-textured-image_13613257.png";
@@ -22,6 +20,7 @@ function App() {
         []
     );
 
+    // ⏱ TIMER (sekund bilan)
     useEffect(() => {
         const interval = setInterval(() => {
             const now = new Date().getTime();
@@ -34,36 +33,44 @@ function App() {
                 const d = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const h = Math.floor((distance / (1000 * 60 * 60)) % 24);
                 const m = Math.floor((distance / (1000 * 60)) % 60);
+                const s = Math.floor((distance / 1000) % 60);
 
-                setTimeLeft(`${d} kun • ${h} soat • ${m} min`);
+                setTimeLeft(`${d} kun • ${h} soat • ${m} min • ${s} sek`);
             }
         }, 1000);
 
         return () => clearInterval(interval);
     }, [weddingDate]);
 
-    const toggleMusic = () => {
-        const audio = audioRef.current;
-        if (!audio) return;
+    // 🎵 AUTO MUSIC (birinchi clickda)
+    useEffect(() => {
+        const playMusic = () => {
+            const audio = audioRef.current;
+            if (audio) {
+                audio.play().catch(() => {});
+                setIsPlaying(true);
+            }
+            window.removeEventListener("click", playMusic);
+        };
 
-        if (isPlaying) audio.pause();
-        else audio.play();
+        window.addEventListener("click", playMusic);
 
-        setIsPlaying(!isPlaying);
-    };
-    // SECTION ANIMATION
+        return () => window.removeEventListener("click", playMusic);
+    }, []);
+
     const fadeUp = {
         hidden: { opacity: 0, y: 80 },
         show: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.8, ease: "easeOut" }
+            transition: { duration: 0.8 }
         }
     };
 
     return (
         <div className="app">
 
+            {/* AUDIO */}
             <audio ref={audioRef} loop>
                 <source src={musicFile} type="audio/mp3" />
             </audio>
@@ -80,27 +87,20 @@ function App() {
                     className="hero_text"
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true }}
                     variants={{
                         hidden: {},
                         show: { transition: { staggerChildren: 0.25 } }
                     }}
                 >
-                    <motion.h1
-                        variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
-                    >
+                    <motion.h1 variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
                         SHAXZOD
                     </motion.h1>
 
-                    <motion.span
-                        variants={{ hidden: { opacity: 0, scale: 0.5 }, show: { opacity: 1, scale: 1 } }}
-                    >
+                    <motion.span variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}>
                         &
                     </motion.span>
 
-                    <motion.h1
-                        variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
-                    >
+                    <motion.h1 variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}>
                         MARJONA
                     </motion.h1>
                 </motion.div>
@@ -110,17 +110,7 @@ function App() {
             </motion.section>
 
             {/* INFO */}
-            <motion.section
-                className="section sed"
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-            >
-                <div className={`music ${isPlaying ? "playing" : ""}`} onClick={toggleMusic}>
-                    <img src={isPlaying ? pause : play} alt="" />
-                </div>
-
+            <motion.section className="section sed" initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }}>
                 <h2>TO‘Y TAKLIFNOMASI</h2>
 
                 <p>
@@ -129,21 +119,13 @@ function App() {
                     munosabati bilan Toshkent shahar Versal to'yxonasiga taklif qilamiz
                 </p>
 
-                <div className="marry">
-                    <img className="marry" src={married} alt="" />
-                </div>
+                <img className="marry" src={married} alt="" />
 
                 <div className="timer">{timeLeft}</div>
             </motion.section>
 
             {/* CALENDAR */}
-            <motion.section
-                className="section seds"
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-            >
+            <motion.section className="section seds" initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }}>
                 <h2 className="wed">WEDDING DATE</h2>
 
                 <img className="cake" src={groom} alt="" />
@@ -159,20 +141,16 @@ function App() {
                         {[...Array(4)].map((_, i) => <div key={i}></div>)}
 
                         {Array.from({ length: 31 }, (_, i) => (
-                            <div className={i + 1 === 1 ? "active" : ""}>{i + 1}</div>
+                            <div key={i} className={i + 1 === 1 ? "active" : ""}>
+                                {i + 1}
+                            </div>
                         ))}
                     </div>
                 </div>
             </motion.section>
 
             {/* LOCATION */}
-            <motion.section
-                className="section sect"
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-            >
+            <motion.section className="section sect" initial={{ opacity: 0, y: 80 }} whileInView={{ opacity: 1, y: 0 }}>
                 <h2>Versal to‘yxonasi</h2>
 
                 <img src={restaurant} alt="" className="restaurant" />
@@ -185,23 +163,15 @@ function App() {
                     src="https://www.google.com/maps?q=Versal%20to'yxonasi%20Toshkent&output=embed"
                 />
 
-                <button
-                    onClick={() =>
-                        window.open("https://www.google.com/maps?q=Versal+to'yxonasi+Toshkent")
-                    }
-                >
+                <button onClick={() =>
+                    window.open("https://www.google.com/maps?q=Versal+to'yxonasi+Toshkent")
+                }>
                     Open Map
                 </button>
             </motion.section>
 
             {/* TIMELINE */}
-            <motion.section
-                className="section sed"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-            >
+            <motion.section className="section sed" variants={fadeUp} initial="hidden" whileInView="show">
                 <h2 className="ser">TO‘Y DASTURI</h2>
 
                 <div className="timeline">
@@ -216,8 +186,7 @@ function App() {
                             key={i}
                             initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ delay: i * 0.25, duration: 0.6 }}
-                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.25 }}
                         >
                             <div className="time">{time}</div>
                             <div>{event}</div>
@@ -225,24 +194,11 @@ function App() {
                     ))}
                 </div>
 
-                <motion.img
-                    className="ring"
-                    src={ring}
-                    alt=""
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                />
+                <img className="ring" src={ring} alt="" />
             </motion.section>
+
             {/* FOOTER */}
-            <motion.section
-                className="footer"
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
-            >
+            <motion.section className="footer" initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }}>
                 <h1>
                     Shaxzod <br /> & <br /> Marjona
                 </h1>
