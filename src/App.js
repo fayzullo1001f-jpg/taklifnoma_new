@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import "./App.css";
 
-import musicFile from "./music/music_for_videos-wedding-march-music-box-163683 (1).mp3";
+import musicFile from "./music/МОТ_Когда_мужчина_влюблён_Премьера_клипа,_2024.mp3";
 import play from "./img/circle-play-solid-full.svg";
 import pause from "./img/circle-pause-solid-full.svg";
 

@@ -9,6 +9,10 @@ body {
   background: #0F172A; /* 🔥 asosiy dark */
   font-family: 'Montserrat', sans-serif;
   color: #E5E7EB;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .app {
